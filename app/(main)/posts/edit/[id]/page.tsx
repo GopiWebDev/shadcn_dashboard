@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import posts from "@/data/posts";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
@@ -44,7 +45,9 @@ const PostEditPage = ({ params }: PostEditPageProps) => {
   });
 
   const handleSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    toast("Post has been updated successfully", {
+      description: `Updated by ${data?.author} on ${data?.date}`,
+    });
   };
 
   return (
